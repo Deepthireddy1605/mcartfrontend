@@ -1,0 +1,83 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a [routerLink]='["/cart"]' routerLinkActive="active">
+          <span class="glyphicon glyphicon-shopping-cart"></span>cart</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-left">
+        <select (change)="mobile($event.target.value)" name="selection" class="nav navbar-nav" style="margin-top: 20%;">
+          <option name="selection" value="">Select</option>
+          <option name="selection" value="mobile">Mobile</option>
+          <option name="selection" value="tablet">Tablet</option>
+          <option name="selection" value="both">Both</option>
+        </select>
+      </ul>
+    </div>
+  </nav>
+
+  
+  <div class="container-fluid" *ngIf="!mobbool">
+            <div class="row">
+            <!-- <div class="col-md-2"></div> -->
+            <div *ngFor = "let product of mobiledata" class="col-md-4 col-sm-4 col-lg-3 col-lg-offset-0.5" style="margin-bottom: 2%;">
+            <div style="text-align: center;"><img [src]='product.imageUrl' style="width: 150px;height: 250px; align-items  : center;"></div>
+                <h3 class="txtsize txtcolor" style="text-align: center;">{{product.productName}}</h3>
+                <h6 style="text-align: center;">by {{product.manufacturer}}</h6>
+                <h6 style="text-align: center;">Price: {{product.price}}</h6>
+                <div style="text-align: center;">Description: {{product.description}}</div> 
+                <div style="text-align: center;">
+                    <span *ngFor="let r of range; let i = index">
+                        <i class="glyphicon" [ngClass]="i < product.rating ? 'glyphicon-star' : 'glyphicon-star-empty'"></i>
+                      </span>
+                </div>
+                <div style="text-align: center;"><button class="btn btn-md" style="background-color: rgb(143, 143, 73);" (click)="add_to_cart(product)">Add To Cart</button>
+            </div></div></div>
+  </div>
+
+    
+  <div class="container-fluid" *ngIf="!tabbool">
+    <div class="row" >
+    <!-- <div class="col-md-2"></div> -->
+    <div *ngFor = "let product of tabdata" class="col-md-4 col-sm-4 col-lg-3 col-lg-offset-0.5" style="margin-bottom: 2%;">
+    <div style="text-align: center;"><img [src]='product.imageUrl' style="width: 150px;height: 150px; align-items  : center;"></div>
+        <h3 class="txtsize txtcolor" style="text-align: center;">{{product.productName}}</h3>
+        <h6 style="text-align: center;">by {{product.manufacturer}}</h6>
+        <h6 style="text-align: center;">Price: {{product.price}}</h6>
+        <div style="text-align: center;">Description: {{product.description}}</div> 
+        <div style="text-align: center;">
+            <span *ngFor="let r of range; let i = index">
+                <i class="glyphicon" [ngClass]="i < product.rating ? 'glyphicon-star' : 'glyphicon-star-empty'"></i>
+              </span>
+        </div>
+        <div style="text-align: center;"><button class="btn btn-md" style="background-color: rgb(143, 143, 73);" (click)="add_to_cart(product)">Add To Cart</button>
+    </div></div></div>
+</div>
+
+
+
+  <!-- <div class="container-fluid" *ngIf="!tabbool">
+    <table class="table table-striped tablebgcolor">
+      <tr *ngFor = "let product of tabdata">
+        <div class="row" style="margin-bottom: 2%;">
+          <div class="col-md-2"></div>
+          <div class="col-md-2">
+          <td align="center"><img [src]='product.imageUrl'  class='img-thumbnail'/></td></div>
+              <td></td>
+          <td>
+              <div class="txtsize txtcolor">{{product.productName}}</div>
+              <div>by {{product.manufacturer}}</div>
+              <div>Price: {{product.price}}</div>
+              <div>Description: {{product.description}}</div>
+              <div>
+                  <span *ngFor="let r of range; let i = index">
+                      <i class="glyphicon" [ngClass]="i < product.rating ? 'glyphicon-star' : 'glyphicon-star-empty'"></i>
+                    </span>
+              </div>
+              <button class="btn btn-md" style="background-color: rgb(143, 143, 73);">Add To Cart</button>
+            </td>
+        </div>
+        <div></div>
+        </tr>
+  </table>
+</div> -->

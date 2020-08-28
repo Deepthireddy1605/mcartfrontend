@@ -1,0 +1,45 @@
+<!-- <nav style="background-color: rgb(107, 107, 212);"></nav> -->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a [routerLink]='["/login"]' routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>Login</a></li>
+      </ul>
+    </div>
+  </nav>
+<div class="container-fluid">
+    <h1>Signup Form</h1>
+    <form [formGroup]="signupForm">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" formControlName="Name" required>
+        <p *ngIf="signupForm.controls.Name.touched && signupForm.controls.Name.invalid" class="alert alert-danger">This field is required!</p>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="Password">
+        <p *ngIf="signupForm.controls.Password.invalid && signupForm.controls.Password.touched" class="alert alert-danger">This field is required!</p>
+      </div>
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" class="form-control" formControlName="Confirmpswd">
+        <p *ngIf="signupForm.controls.Confirmpswd.invalid && signupForm.controls.Confirmpswd.touched" class="alert alert-danger">This field is required!</p>
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="number" class="form-control" formControlName="phone">
+        <p *ngIf="signupForm.controls.phone.dirty && signupForm.controls.phone.errors?.phoneInvalid" class="alert alert-danger">{{signupForm.controls.phone.errors?.phoneInvalid.message}}</p>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" class="form-control" formControlName="mail">
+        <!-- <p *ngIf="signupForm.controls.mail.touched" class="alert alert-danger">This field is required!</p> -->
+        <p *ngIf="signupForm.controls.mail.dirty && signupForm.controls.mail.errors?.emailInvalid" class="alert alert-danger">{{signupForm.controls.mail.errors?.emailInvalid.message}}</p>
+      </div>
+      <p *ngIf="submitted" class="alert alert-danger">Password and Confirm Password Should match</p>
+      <div [hidden]="signbool" class="alert alert-danger">{{loginmatch}}</div>
+      <div [hidden]="signbool_sucess" class="alert alert-success">{{loginmatch}}</div>
+      <button class="btn btn-primary" (click)="signupvalidation()" type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+    </form>
+  </div>
+   
+  
