@@ -7,7 +7,6 @@ import {Signup} from './singup'
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
-  providers: [AppService]
 })
 export class SignupComponent implements OnInit {
   signupForm:FormGroup;

@@ -1,11 +1,9 @@
 
-<nav style="background-color: rgb(107, 107, 212);"></nav>
 <nav class="navbar navbar-inverse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a [routerLink]='["/signup"]' routerLinkActive="active"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      </ul>
-  </nav>
-
+    <ul class="nav navbar-nav navbar-right">
+      <li><a [routerLink]='["/signup"]' routerLinkActive="active"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+    </ul>
+   </nav>
 <div class="container-fluid">
 <h1>Login</h1>
 <form #loginform="ngForm" (ngSubmit)="login_fun()">

@@ -6,12 +6,21 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-left">
-        <select (change)="mobile($event.target.value)" name="selection" class="nav navbar-nav" style="margin-top: 20%;">
+        <li><a [routerLink]='["/wishlist"]' routerLinkActive="active">
+          <span class="glyphicon glyphicon-button"></span>wishlist</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-left">
+        <select (change)="mobile($event.target.value)" name="selection" class="nav navbar-nav glyphicon glyphicon-select" style="margin-top: 25%;">
           <option name="selection" value="">Select</option>
           <option name="selection" value="mobile">Mobile</option>
           <option name="selection" value="tablet">Tablet</option>
           <option name="selection" value="both">Both</option>
         </select>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <input type="text" class="form-control" placeholder="Search" (keyup)=search($event.target.value) autocomplete style="margin-top: 5%;"> 
+        <option *ngFor="let product of searchdata" (click)="productnavigation(product)" style="color: aliceblue;">{{product.productName}}</option>
       </ul>
     </div>
   </nav>
@@ -19,10 +28,9 @@
   
   <div class="container-fluid" *ngIf="!mobbool">
             <div class="row">
-            <!-- <div class="col-md-2"></div> -->
-            <div *ngFor = "let product of mobiledata" class="col-md-4 col-sm-4 col-lg-3 col-lg-offset-0.5" style="margin-bottom: 2%;">
+            <div *ngFor = "let product of mobiledata" class="col-md-4 col-sm-4 col-lg-3 col-lg-offset-0.5" style="margin-bottom: 1.5%;" (click)="productnavigation(product)">
             <div style="text-align: center;"><img [src]='product.imageUrl' style="width: 150px;height: 250px; align-items  : center;"></div>
-                <h3 class="txtsize txtcolor" style="text-align: center;">{{product.productName}}</h3>
+            <h3 class="txtsize txtcolor" style="text-align: center;">{{product.productName}}  <span class="glyphicon glyphicon-heart" style="color: red;" *ngIf="wishlist.includes(product.productId)"></span></h3>
                 <h6 style="text-align: center;">by {{product.manufacturer}}</h6>
                 <h6 style="text-align: center;">Price: {{product.price}}</h6>
                 <div style="text-align: center;">Description: {{product.description}}</div> 
@@ -31,17 +39,15 @@
                         <i class="glyphicon" [ngClass]="i < product.rating ? 'glyphicon-star' : 'glyphicon-star-empty'"></i>
                       </span>
                 </div>
-                <div style="text-align: center;"><button class="btn btn-md" style="background-color: rgb(143, 143, 73);" (click)="add_to_cart(product)">Add To Cart</button>
-            </div></div></div>
+          </div></div>
   </div>
 
     
   <div class="container-fluid" *ngIf="!tabbool">
     <div class="row" >
-    <!-- <div class="col-md-2"></div> -->
-    <div *ngFor = "let product of tabdata" class="col-md-4 col-sm-4 col-lg-3 col-lg-offset-0.5" style="margin-bottom: 2%;">
-    <div style="text-align: center;"><img [src]='product.imageUrl' style="width: 150px;height: 150px; align-items  : center;"></div>
-        <h3 class="txtsize txtcolor" style="text-align: center;">{{product.productName}}</h3>
+    <div *ngFor = "let product of tabdata" class="col-md-4 col-sm-4 col-lg-3 col-lg-offset-0.5" style="margin-bottom: 2%;" (click)="productnavigation(product)">
+    <div style="text-align: center;"><img [src]='product.imageUrl' style="width: 150px;height: 150px; align-items  : center;"></div>      
+    <h3 class="txtsize txtcolor" style="text-align: center;">{{product.productName}} <span class="glyphicon glyphicon-heart" style="color: red;" *ngIf="wishlist.includes(product.productId)"></span></h3>
         <h6 style="text-align: center;">by {{product.manufacturer}}</h6>
         <h6 style="text-align: center;">Price: {{product.price}}</h6>
         <div style="text-align: center;">Description: {{product.description}}</div> 
@@ -50,8 +56,7 @@
                 <i class="glyphicon" [ngClass]="i < product.rating ? 'glyphicon-star' : 'glyphicon-star-empty'"></i>
               </span>
         </div>
-        <div style="text-align: center;"><button class="btn btn-md" style="background-color: rgb(143, 143, 73);" (click)="add_to_cart(product)">Add To Cart</button>
-    </div></div></div>
+  </div></div>
 </div>
 
 

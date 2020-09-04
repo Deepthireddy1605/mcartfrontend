@@ -6,11 +6,11 @@ import { AppService } from './app.services';
 })
 export class LoginGuardService implements CanActivate {
     constructor(private appService: AppService, private router: Router) {
-        console.log("guard constructor")
+        // console.log("guard constructor")
      }
     canActivate(): boolean {
         if (this.appService.isUserLoggedIn()) {
-            console.log("in login guard")
+            // console.log("in login guard")
             return true;
         }
         this.router.navigate(['/login']);

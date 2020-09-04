@@ -1,52 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Page 1-1</a></li>
-            <li><a href="#">Page 1-2</a></li>
-            <li><a href="#">Page 1-3</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
+    <ul class="nav navbar-nav navbar-left">
+      <li><a [routerLink]='["/home"]' routerLinkActive="active">
+        <span class="glyphicon glyphicon-home"></span>home</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a [routerLink]='["/login"]' routerLinkActive="active">
+        <span class="glyphicon glyphicon-button"></span>Logout</a>
+      </li>
+    </ul>
   </div>
 </nav>
-  
-<div class="container">
-  <h3>Collapsible Navbar</h3>
-  <p>In this example, the navigation bar is hidden on small screens and replaced by a button in the top right corner (try to re-size this window).
-  <p>Only when the button is clicked, the navigation bar will be displayed.</p>
-</div>
 
-</body>
-</html>
+
+<div class="container-fluid">
+  <div class="row">
+  <!-- <div class="col-md-2"></div> -->
+  <div *ngFor = "let product of cartdata" class="col-md-4 col-sm-4 col-lg-3 col-lg-offset-0.5" style="margin-bottom: 2%;" >
+    <div *ngIf="product.quantity>0">
+  <div style="text-align: center;"><img [src]='product.imageUrl' style="width: 150px;height: 250px; align-items  : center;"></div>
+      <h3 class="txtsize txtcolor" style="text-align: center;">{{product.productName}}</h3>
+      <h6 style="text-align: center;">by {{product.manufacturer}}</h6>
+      <h6 style="text-align: center;">Price: {{product.price}}</h6>
+      <div style="text-align: center;">Description: {{product.description}}</div> 
+      <div style="text-align: center;">
+          <span *ngFor="let r of range; let i = index">
+              <i class="glyphicon" [ngClass]="i < product.rating ? 'glyphicon-star' : 'glyphicon-star-empty'"></i>
+            </span>
+      </div>
+      <div style="text-align: center;">
+        <button class="btn btn-md" style="background-color: rgb(143, 143, 73);" (click)="quantityfundecr(product)">-
+        </button><span>{{product.quantity}}</span><button class="btn btn-md" style="background-color: rgb(143, 143, 73);" (click)="quantityfun(product)">+</button>
+  </div>
+<div style="text-align: center;">Total Price: {{product.quantity*product.price}}</div>
+</div></div>
+</div>
+<div style="text-align: center;">
+  <h2>Final price : {{totalprice}}</h2>
+  <button class="btn btn-md">Place Order</button>
+</div>
+</div>

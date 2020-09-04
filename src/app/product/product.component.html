@@ -1,0 +1,53 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a [routerLink]='["/cart"]' routerLinkActive="active">
+          <span class="glyphicon glyphicon-shopping-cart"></span>cart</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-left">
+        <li><a [routerLink]='["/wishlist"]' routerLinkActive="active">
+          <span class="glyphicon glyphicon-button"></span>wishlist</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+<div class="container-fluid" *ngIf="prodbool">
+    <div class="row">
+    <!-- <div class="col-md-2"></div> -->
+    <div class="col-md-4 col-sm-4 col-lg-4 col-lg-offset-1" style="text-align: center;"><img [src]='product.imageUrl' style="width: 200px;height: 400px; align-items  : center;">
+    <h6 align="right"><span class="glyphicon glyphicon-heart" (click)="wishlistadd(product.productId)" *ngIf="!wishlistvar"></span></h6>
+    <h6 align="right"><span class="glyphicon glyphicon-heart" style="color: red;" *ngIf="wishlistvar" (click)="wishlistadd(product.productId)"></span></h6></div>
+        <h3 class="txtsize txtcolor" style="text-align: center;">{{product.productName}}</h3>
+        <h6 style="text-align: center;">by {{product.manufacturer}}</h6>
+        <h6 style="text-align: center;">Price: {{product.price}}</h6>
+        <div style="text-align: center;">Description: {{product.description}}</div> 
+        <div style="text-align: center;">
+            <span *ngFor="let r of range; let i = index">
+                <i class="glyphicon" [ngClass]="i < product.rating ? 'glyphicon-star' : 'glyphicon-star-empty'"></i>
+              </span>
+        </div>
+        <div style="text-align: center;"><button class="btn btn-md" style="background-color: rgb(143, 143, 73);" (click)="add_to_cart(product)" [disabled]="cartvar">Add To Cart</button>
+    </div>
+</div></div>
+
+<div class="container-fluid" *ngIf="prodbool && suggestionproducts.length>0">
+    <h1>Suggestions</h1>
+        <div class="row" >
+        <!-- <div class="col-md-2"></div> -->
+        <div *ngFor = "let product of suggestionproducts" class="col-md-4 col-sm-4 col-lg-3 col-lg-offset-0.5" style="margin-bottom: 2%;" (click)="productnavigation(product)">
+            <div style="text-align: center;"><img [src]='product.imageUrl' style="width: 150px;height: 150px; align-items  : center;"></div>
+            <h3 class="txtsize txtcolor" style="text-align: center;">{{product.productName}}</h3>
+            <h6 style="text-align: center;">by {{product.manufacturer}}</h6>
+            <h6 style="text-align: center;">Price: {{product.price}}</h6>
+            <div style="text-align: center;">Description: {{product.description}}</div>
+            <div style="text-align: center;">
+                <span *ngFor="let r of range; let i = index">
+                    <i class="glyphicon" [ngClass]="i < product.rating ? 'glyphicon-star' : 'glyphicon-star-empty'"></i>
+                  </span>
+            </div>
+            <!-- <div style="text-align: center;"><button class="btn btn-md" style="background-color: rgb(143, 143, 73);" >Add To Cart</button> -->
+        </div></div>
+</div>

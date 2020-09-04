@@ -11,7 +11,9 @@ import { SignupComponent } from './signup/signup.component';
 import { CartComponent } from './cart/cart.component';
 import {LoginGuardService} from './app-guard';
 import {AppService} from './app.services';
-import { HomeComponent } from './home/home.component'
+import { HomeComponent } from './home/home.component';
+import { ProductComponent } from './product/product.component';
+import { WishlistComponent } from './wishlist/wishlist.component'
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { HomeComponent } from './home/home.component'
     LoginComponent,
     SignupComponent,
     CartComponent,
-    HomeComponent
+    HomeComponent,
+    ProductComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,
